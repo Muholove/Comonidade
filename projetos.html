@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - MuholoveDevConnect</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            /* background-color: #1f1f1f; */
+            background: linear-gradient(#0c0b0b, #353536);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+
+            background: linear-gradient(#19191a, #05310a);
+
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header input[type="search"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        header button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-panel {
+            display: flex;
+
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20%;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-right: 1px solid #333;
+            box-shadow: 5px 5px 15px rgba(44, 243, 4, 0.7);
+        }
+        .men {
+            margin-top: 0px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #f5f5f5;
+    background: linear-gradient(#151515, #256b25);
+}
+
+        .user-panel h2 {
+            margin-top: 0;
+        }
+
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .user-list li {
+            margin-bottom: 10px;
+        }
+
+        .user-list li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            background: linear-gradient(#151515, #1d3a1d);
+         
+        }
+        .user-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+        .user-list li a:hover {
+            background-color: #444;
+        }
+        .user-list li .user-image {
+            width: 40px; /* Defina o tamanho máximo da imagem */
+    height: 40px; /* Defina o tamanho máximo da imagem */
+    border-radius: 50%; /* Cria um círculo usando border-radius */
+    margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #07eb1a;
+            margin-right: 10px;
+        }
+        .projects-panel {
+            background-image: url("imagens/misc-motivati.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+           /* justify-content: space-between;*/
+            width: 100%;
+            padding: 10px;
+        }
+
+        .projects-panel h2 {
+            margin-top: 0;
+        }
+
+        .projects-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+.mae{
+    display: flex;
+}
+       
+
+        .project-item {
+            box-shadow: 5px 5px 15px rgba(209, 90, 54, 0.918);
+            background: linear-gradient(#151515, #1d3a1d);
+         
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: calc(33.333% - 60px);
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        footer .links,
+        footer .contacto,
+        footer .biografia {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <input type="search" id="compo-pesquisar"><button type="button" id="Pesquisar">Pesquisar</button>
+        <h1>MuholoveDevConnect</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="index.html">IDE Codding</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+          
+            <li><a href="aprender.html">Aprender</a></li>
+            <li><a href="https://www.youtube.com/watch?v=BXqUH86F-kA&list=PLntvgXM11X6pi7mW0O4ZmfUI1xDSIbmTm">Aulas para  Iniciantes</a></li>
+            
+            <li><a href="inteligencia.html">Inteligencia artificial</a></li>
+            <li><a href="configuracoes.html" class="active">Configurações</a></li>
+            <li><a href="hack.html">Ajuda</a></li>
+       
+                </nav>
+    </header>
+
+
+    <div class="mae">
+        <div class="user-panel">
+            <h2>Meu Perfil</h2>
+            <div class="user-image"></div>
+            <p id="username" style="color: #0adf0a;"></p>
+            <p id="email" style="color: #0adf0a;"></p>
+            <h2>Outros Usuários</h2>
+            <ul class="user-list" id="user-list">
+                <!-- Lista de outros usuários será preenchida dinamicamente -->
+            </ul>
+        </div>
+
+        <div class="projects-panel">
+            <nav class="men">
+                <h2 style="color: #fff;">Projetos</h2>
+            </nav>
+            <div class="projects-list">
+                <!-- Lista de projetos -->
+            </div>
+        </div>
+    </div>
+
+    <button id="add-project-btn">Adicionar Novo Projeto</button>
+
+
+
+    <div class="footer">
+        <p>&copy; 2024 MuholoveDevConnect. Todos os direitos reservados.</p>
+    </div>
+    <script> 
+   // Função para exibir o usuário autenticado
+   const displayCurrentUser = (user) => {
+            const usernameElement = document.getElementById("username");
+            const emailElement = document.getElementById("email");
+            usernameElement.textContent = `Nome de usuário: ${user.displayName}`;
+            emailElement.textContent = `Email: ${user.email}`;
+        };
+
+        // Função para exibir outros usuários
+        const displayOtherUsers = () => {
+            const userList = document.getElementById("user-list");
+            // Suponha que outros usuários sejam armazenados em um array chamado "otherUsers"
+            const otherUsers = [
+                { username: "Emilton Muholove......", email: "usuario1@example.com" },
+                { username: "Cornelio Mahunlha.....", email: "usuario2@example.com" },
+                { username: "Emerson Covane........", email: "usuario2@example.com" },
+                { username: "Juvencio Guambi.......", email: "usuario2@example.com" },
+                // Adicione mais usuários conforme necessário
+            ];
+
+            // Limpa a lista de usuários
+            userList.innerHTML = "";
+
+            // Preenche a lista de usuários
+            otherUsers.forEach((user) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <a href="#">
+                        <div class="user-image"></div>
+                        ${user.username}
+                    </a>
+                `;
+                userList.appendChild(listItem);
+            });
+        };
+
+        // Verifica se há um usuário autenticado
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            // Exibe o usuário autenticado
+            displayCurrentUser(user);
+            // Exibe outros usuários
+            displayOtherUsers();
+        } else {
+            // Se não houver usuário autenticado, redireciona para a página de login
+            window.location.href = "login.html";
+        }
+
+        // Simulação de seleção de usuário
+        const userList = document.querySelector('.user-list');
+        const projectsList = document.querySelector('.projects-list');
+
+        userList.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                // Limpa a lista de projetos
+                projectsList.innerHTML = '';
+
+                // Simula a criação de projetos para o usuário selecionado
+                // Função para exibir projetos do usuário selecionado
+const displayUserProjects = (user) => {
+    // Limpa a lista de projetos
+    projectsList.innerHTML = '';
+
+    // Simula a criação de projetos para o usuário selecionado
+    let userProjects = [];
+
+    // Define os projetos com base no usuário selecionado
+    switch (user.username) {
+        case "Emilton Muholove......":
+            userProjects = [
+                { name: 'Emilton: INFOLERNING.Java', description: 'Sistema de gestao Academica em Java, MySql' },
+                { name: 'Emilton: EuropCar Rentel', description: 'Sistema de gestao de Viaturas de aluquer em Java,MySql' },
+                { name: 'Emilton: Relogio Digital ', description: 'relogio desenvolvido em HTML,CSS e JavaScript' },
+                { name: 'Emilton: Clinica ElizaBeth', description: 'Sistema de gestao de RH Usando Sql' },
+                { name: 'Emilton: Sistema de Reservas de Passagens', description: 'Passagens Aerias e terrestres em HTML,CSS, PHP e Js' },
+                { name: 'Emilton: Arquivo X', description: 'Sistema de Armazeamento de Arquivos Confidenciais em HTML, CSS, PHP e JS e uso de Tecnologias de cifragem...' }
+            ];
+            break;
+        case "Cornelio Mahunlha.....":
+            userProjects = [
+                { name: 'Cornelio: Sistema de Faturacao', description: 'Sistema que gera faturas para lojas em java' },
+                { name: 'Cornelio: Sistema de gestao de tempo de trabalho ', description: 'Gerenciamento de funcionarios, aposentadosrias etc em Html, PHP e CSS' },
+                { name: 'Cornelio: Sistema de gestao de tempo de trabalho 2', description: 'Versao 2 desenvolvido em Java e integracao de Mysql' },
+                { name: 'Cornelio: Site de registro de pessoas para um evento qualquer', description: 'Site que permite que os participantes confirmem sua presenca online' },
+                { name: 'Cornelio: Sistema de particionamento de disco', description: 'Sistema de reparticao de disco em java' },
+                { name: 'Cornelio: Site seguro de pagamentos online (em densevolimento)', description: 'Site seguro que gerencia compras online , uso de tecnologias e-comerce' }
+            ];
+            break;
+        case "Emerson Covane........":
+            userProjects = [
+                { name: 'Emerson: Loja Online', description: 'Sistema de compra e venda online em HTML,CSS e JavaScript' },
+                { name: 'Emerson: Sistema de leitura de Temperatura', description: 'Sistema de devulgacao de dados metrologicos Em HTML,CSS e Js' },
+                { name: 'Emerson: Relogio Digital', description: 'Relogio desenvolvido em HTML, Css e JavaScript' },
+                { name: 'Emerson: Site pessoal responsivo', description: 'site de blogs pessoais totalmente responsivo ' },
+                { name: 'Emerson: Cubo Giratorio', description: 'Cubo magico Desenvolvido em HTML , CSS' },
+                { name: 'Emerson: Sistema gestao hoteleira', description: 'Sistema de gestao de hoteis em Java ' }
+            ];
+            break;
+            case "Juvencio Guambi.......":
+            userProjects = [
+                { name: 'Juvencio: Gestao de Hotel', description: 'Projeto de gestao de hotel em Java e sql' },
+                { name: 'Juvencio: Gestao de Fermacia', description: 'Sistema de gestao de farmacia em Java' },
+                { name: 'Juvencio: Site Academico  ', description: 'Site Academico em HTML,CSS e JavaScript' },
+                { name: 'Juvencio: Gestao de vendas', description: 'Projeto de gestao de vendas em SqlServer' },
+                { name: 'Juvencio: Gestao de hote2', description: 'Projeto de gestao de hotel em Java e Mysql' },
+                { name: 'Juvencio: Gestao Hospitalar', description: 'Sistema de sestao de medicamentos em Java' }
+            ];
+            break;
+        default:
+            userProjects = [];
+            break;
+    }
+
+    // Exibe os projetos do usuário selecionado
+    userProjects.forEach(project => {
+        const projectItem = document.createElement('div');
+        projectItem.classList.add('project-item');
+        projectItem.innerHTML = `
+            <h3>${project.name}</h3>
+            <p>${project.description}</p>
+        `;
+        projectsList.appendChild(projectItem);
+    });
+};
+
+// Simulação de seleção de usuário
+userList.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+        // Obtém o nome do usuário selecionado
+        const selectedUser = event.target.textContent.trim();
+        
+        // Simula a mudança de projetos para o usuário selecionado
+        displayUserProjects({ username: selectedUser });
+    }
+});
+
+            }
+        });
+    </script>
+</body>
+</html>

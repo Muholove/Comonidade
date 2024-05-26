@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hacker Simulator Online</title>
+	<link rel="stylesheet" href="estilos.css">
+	<style>
+		body {
+			background-size: cover;
+			background-color: #333;
+			color: #fff;
+			font-family: monospace;
+		
+		}
+		.terminal {
+			background-color: #444;
+			padding: 10px;
+			border: 1px solid #666;
+			border-radius: 10px;
+			width: 80%;
+			margin: 20px auto;
+		}
+		.command {
+			color: #0f0;
+		}
+		.output {
+			color: #fff;
+		}
+		.error {
+			color: #f00;
+		}
+        .rain {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.binary {
+			font-size: 14px;
+			color: #0f0;
+			animation: rain 3s linear infinite;
+		}
+		@keyframes rain {
+			0% {
+				transform: translateY(-100%);
+			}
+			100% {
+				transform: translateY(100%);
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+        <input type="search" name="emilton" id="compo-pesquisar"><button type="button" id="Pesquisar">Pesquisar</button>
+        <h1>MuholoveDevConnect</h1>
+    </header>
+    <nav class="menu">
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="index.html">IDE Codding</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+          
+            <li><a href="aprender.html">Aprender</a></li>
+            <li><a href="https://www.youtube.com/watch?v=BXqUH86F-kA&list=PLntvgXM11X6pi7mW0O4ZmfUI1xDSIbmTm">Aulas para  Iniciantes</a></li>
+            
+            <li><a href="inteligencia.html">Inteligencia artificial</a></li>
+            <li><a href="configuracoes.html" class="active">Configurações</a></li>
+            <li><a href="hack.html">Ajuda</a></li>
+       
+        </ul>
+    </nav>
+	<div class="terminal">
+		<h1>Comunidade de rogramadores</h1>
+		<p>Bem-vindo ao MuholoveDevConnect! Você agora está logado como "root".</p>
+		<div id="command-line">
+			<input type="text" id="command" placeholder="Enter a command...">
+			<button id="execute">Execute</button>
+		</div>
+		<div id="output">
+			<p id="prompt">$</p>
+		</div>
+	</div>
+</div>
+
+	<script>
+        const rain = document.querySelector(".rain");
+		const binaries = document.querySelectorAll(".binary");
+
+		setInterval(() => {
+			binaries.forEach((binary) => {
+				binary.style.top = `${Math.random() * 100}%`;
+				binary.style.left = `${Math.random() * 100}%`;
+			});
+		}, 100);
+		const commandLine = document.getElementById("command-line");
+		const output = document.getElementById("output");
+		const prompt = document.getElementById("prompt");
+		const commandInput = document.getElementById("command");
+		const executeButton = document.getElementById("execute");
+
+		executeButton.addEventListener("click", executeCommand);
+
+		function executeCommand() {
+			const command = commandInput.value.trim();
+			if (command === "") return;
+			commandInput.value = "";
+
+			switch (command) {
+				case "help":
+					output.innerHTML += "<p class='output'> commandos validos: ajuda,projetos,conta, Inteligencia artificial, sore o site, hack</p>";
+					break;
+				case "projetos":
+					output.innerHTML += "<p class='output'>Files: system.log, password.txt, secret_folder/</p>";
+					break;
+				case "conta":
+					output.innerHTML += "<p class='output'>You are now in the root directory.</p>";
+					break;
+				case "inteligencia artificial":
+					output.innerHTML += "<p class='output'>Directory created: secret_folder/</p>";
+					break;
+				case "rm":
+					output.innerHTML += "<p class='output'>File deleted: password.txt</p>";
+					break;
+				case "hack":
+					output.innerHTML += "<p class='error'>Access denied! You don't have permission to hack the system.</p>";
+					break;
+				default:
+					output.innerHTML += "<p class='error'>Unknown command. Type 'help' for available commands.</p>";
+			}
+
+			prompt.innerHTML = "$ ";
+            
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuholoveDevConnect - Sua Comunidade de Programação</title>
+    <link rel="stylesheet" href="estil.css">
+    <style>
+        .cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg);
+            animation: animate 20s infinite linear;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotateX(-30deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(-30deg) rotateY(360deg);
+            }
+
+        }
+
+        .cube div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .cube div span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(#151515, #00ec00);
+            transform: rotateY(calc(90deg * var(--i))) translateZ(10px);
+        }
+
+        .cima {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(#151515, #00ec00);
+            transform: rotateX(90deg) translateZ(10px);
+        }
+
+        .cima::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: #0f0;
+            transform: translateZ(-40px);
+            filter: blur(20px);
+            box-shadow: 0 0 120px rgba(0, 255, 0, 0.2),
+                0 0 200px rgba(0, 255, 0, 0.4),
+                0 0 300px rgba(0, 255, 0, 0.6),
+                0 0 400px rgba(0, 255, 0, 0.8),
+                0 0 500px rgba(0, 255, 0, 1);
+        }
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0e131b;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            border-radius: 5px;
+            background: linear-gradient(#0a0a0a, #09020c);
+            color: #fff;
+            transition: width 0.5s ease-in-out;
+            /* Transição para a largura */
+        }
+
+        .sidebar.collapsed {
+            width: 50px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .sidebar-logo img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .sidebar-logo h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .sidebar-menu a:hover {
+            background: linear-gradient(#9f36db, #1d043a);
+        }
+
+        .sidebar-menu a.active {
+            background: linear-gradient(#9f36db, #1d043a);
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s ease-in-out;
+        }
+
+        .main-content.collapsed {
+            margin-left: 50px;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: #7799e4;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            /* Posicionamento relativo para a linha descendente */
+        }
+
+        .line-progress {
+            position: absolute;
+            /* Posicionamento absoluto para a linha descendente */
+            top: 0;
+            left: 0;
+            width: 20px;
+            /* Largura inicial zero */
+            height: 5px;
+            /* Altura da linha */
+            background-color: #34db3c;
+            /* Cor inicial verde */
+            transition: width 5s linear infinite;
+            /* Animação de progresso */
+        }
+
+        @keyframes progress-bar {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Estilos específicos para a página inicial */
+        .hero {
+            background: url('imagens/Fundo\ Chuva.jpg') no-repeat center center fixed;
+  background-size: cover;
+            /* Substitua por sua imagem de hero */
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        .hero a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2980b9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .hero a:hover {
+            background-color: #2271b1;
+        }
+
+        /* Estilos para seções com conteúdo */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-heading {
+            font-size: 35px;
+            font-weight: bold;
+            color: #1ffa0b;
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .section-content {
+            font-size: 18px;
+            font-weight: bold;
+
+            color: hsl(0, 0%, 95%);
+            line-height: 1.6;
+        }
+
+        .section-content p {
+            margin-bottom: 10px;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .section-content ul li::before {
+            content: "•";
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        /* Estilos para lista de benefícios */
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .benefits-list-item {
+            background-color: #0c0c14;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .benefits-list-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .benefits-list-item p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Estilos para botão de call to action */
+        .call-to-action {
+            background: linear-gradient(#9f36db, #1d043a);
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .call-to-action:hover {
+            background-color: #0d9408;
+            cursor: pointer;
+        }
+
+        /* Estilos para depoimentos */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .testimonial {
+            background-color: #363636;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: calc(50% - 20px);
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .testimonial p.author {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Estilos para o footer */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Animação de linha lateral esquerda (similar ao GitHub) */
+        .toggle-sidebar {
+            display: none;
+            /* Ocultar inicialmente em telas maiores */
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 250px;
+                transition: none;
+                /* Desativar transição em telas menores */
+            }
+
+            .main-content {
+                margin-left: 250px;
+                transition: none;
+                /* Desativar transição em telas menores */
+            }
+
+            .toggle-sidebar {
+                display: block;
+            }
+        }
+
+        .toggle-sidebar:hover {
+            color: #ffffff;
+        }
+
+        .toggle-sidebar.active .bars:before {
+            transform: rotate(45deg);
+        }
+
+        .toggle-sidebar.active .bars:after {
+            transform: rotate(-45deg);
+        }
+
+        .bars {
+            display: block;
+            width: 30px;
+            height: 5px;
+            background-color: #4d4a4a;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .bars:before,
+        .bars:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            position: absolute;
+        }
+
+        .bars:before {
+            top: -5px;
+        }
+
+        .bars:after {
+            top: 5px;
+        }
+
+        /* Animação de linha descendente (similar ao GitHub) */
+        .line-progress {
+            background-color: #34f00e;
+            /* Cor base da linha */
+            animation: progress-bar 5s linear infinite;
+            /* Animação de progresso */
+        }
+
+        @keyframes progress-bar {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        #benefits {
+            padding: 4px 10;
+            /* Aumente o padding superior e inferior da seção */
+            background-color: #070c13;
+            /* Adicione uma cor de fundo sutil para destacar a seção */
+        }
+
+        #comunidade {
+            padding: 4px 10;
+            /* Aumente o padding superior e inferior da seção */
+            background-color: #070c13;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            /* Aumente a largura mínima de cada item da lista de benefícios */
+            gap: 40px;
+            /* Aumente o espaço entre os itens da lista */
+        }
+
+        .benefits-list-item {
+            margin-top: 10px;
+            color: #3bfa0b;
+            font-weight: bold;
+            box-shadow: 5px 5px 15px rgba(209, 90, 54, 0.918);
+            background: linear-gradient(#151515, #1d3a1d);
+            border-radius: 15px;
+            /* Aumente o arredondamento dos cantos */
+            /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adicione uma sombra sutil para dar mais destaque */
+            padding: 30px;
+            /* Aumente o padding interno dos itens da lista */
+            text-align: center;
+        }
+
+        /* Ocultar o elemento de carregamento após carregamento da página (CSS aplicado diretamente) */
+        body.loaded .loading {
+            display: none;
+        }
+
+        .benefits-list-item:hover {
+            transform: scale(1.05);
+            /* Aumente a escala do item ao passar o mouse */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            /* Aumente a sombra ao passar o mouse */
+        }
+
+        .benefits-list-item {
+            opacity: 0;
+            /* Comece com opacidade zero */
+            animation: fadeIn 0.5s ease-in-out forwards;
+            /* Adicione uma animação de entrada */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                /* Mova para cima */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* Volte para a posição original */
+            }
+        }
+
+        /* Elementos interativos com animações sutis ao passar o mouse */
+        .section-heading:hover,
+        .call-to-action:hover {
+            animation: pulse 0.5s ease-in-out infinite alternate;
+        }
+
+        .beneficio {
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(209, 90, 54, 0.918);
+            background-image: url("imagens/misc-motivati.jpg");
+            background-size: cover;
+            
+            /* Set text color to white */
+            line-height: 1.5;
+            /* Increase line height for better readability */
+            font-weight: bold;
+            background-color: #0e131b;
+            color: #ffffff;
+            margin-bottom: 40px;
+            font-size: 20px;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animação de transição suave entre as seções */
+        .container section {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #hero {
+            background-image: url("imagens/Captura\ de\ Ecrã\ \(57\).png");
+            /* Replace "hero-image.jpg" with the actual path to your image */
+            background-size: cover;
+            /* Cover the entire area of the element */
+            background-position: center;
+            /* Center the image */
+            min-height: 500px;
+            /* Set a minimum height for the hero section */
+            padding: 0;
+            /* Remove default padding */
+            text-align: center;
+            /* Center the text content */
+        }
+
+        #hero h2 {
+            color: #fff;
+            /* Set text color to white */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            /* Add a text shadow for better readability */
+        }
+
+        #hero p {
+            color: #fff;
+            /* Set text color to white */
+            line-height: 1.5;
+            /* Increase line height for better readability */
+            font-weight: bold;
+        }
+
+        #hero a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2980b9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #hero a:hover {
+            background-color: #2271b1;
+        }
+    </style>
+</head>
+
+<body class="loading">
+    <div class="loading">
+        <img src="logo.png" alt="Logo MuholoveDevConnect">
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo_sidebar.png" alt="Logo sidebar">
+            <h1>MuholoveDevConnect</h1>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#benefits">Benefícios</a></li>
+            <li><a href="Cadastro.html">Comunidade</a></li>
+            <li><a href="Cadastro.html">Desenvolva suas Habilidades</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="conf">
+            <div class="cube">
+                <div class="cima" style="text-align: center;">
+
+
+
+
+                </div>
+                <div>
+                    <span style="--i:0">
+
+                    </span>
+                    <span style="--i:1">
+
+
+                    </span>
+                    <span style="--i:2">
+
+                        <p></p>
+                    </span>
+                    <span style="--i:3">
+
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="toggle-sidebar">
+            <div class="bars"></div>
+        </div>
+
+        <div class="container">
+            <section id="hero" class="hero">
+                <h2>Acelere sua jornada como programador</h2>
+                <p>
+                    A MuholoveDevConnect é uma comunidade online vibrante e gratuita criada para conectar programadores
+                    de todos os níveis. Seja você um iniciante em busca de orientação ou um profissional experiente
+                    querendo compartilhar conhecimento, a MuholoveDevConnect tem algo para você.
+                </p>
+                <a href="Cadastro.html" class="call-to-action">Cadastre-se agora!</a>
+            </section>
+
+            <section id="about">
+                <h2 class="section-heading">Quem somos?</h2>
+                <p class="section-content">
+                    A MuholoveDevConnect é uma iniciativa criada por um Programador apaixonado que deseja compartilhar
+                    seus conhecimentos e experiências com a comunidade. Acreditamos que a colaboração e o aprendizado
+                    mútuo são fundamentais para o crescimento profissional.
+                </p>
+                <p class="section-content">
+                    Nossa missão é fornecer uma plataforma inclusiva e acessível para que todos os programadores,
+                    independentemente de seu nível de experiência, possam aprender, se conectar e evoluir em suas
+                    carreiras.
+                </p>
+            </section>
+
+            <section id="benefits">
+
+                <h2 class="section-heading">Benefícios de se tornar um membro</h2>
+                <div class="beneficio">
+
+                    <div class="benefits-list">
+                        <div class="benefits-list-item">
+                            <h3>Acesso a um vasto repositório de conteúdos</h3>
+                            <p>Oferecemos uma ampla variedade de tutoriais, workshops, exemplos de código e projetos
+                                prontos para te auxiliar no seu aprendizado de programação.</p>
+                        </div>
+                        <div class="benefits-list-item">
+                            <h3>Participe de discussões e fóruns técnicos</h3>
+                            <p>Tire suas dúvidas, compartilhe seus conhecimentos e conecte-se com outros programadores
+                                para trocar experiências e aprender em conjunto.</p>
+                        </div>
+                        <div class="benefits-list-item">
+                            <h3>Oportunidades de colaboração em projetos</h3>
+                            <p>Junte-se a projetos colaborativos em andamento ou proponha o seu próprio para colocar
+                                seus conhecimentos em prática e trabalhar em equipe.</p>
+                        </div>
+                        <div class="benefits-list-item">
+                            <h3>Desafios semanais e hackathons online</h3>
+                            <p>Teste seus conhecimentos, aprenda novas tecnologias e se divirta participando de desafios
+                                semanais e hackathons online organizados pela comunidade.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <a href="#" class="call-to-action">Conheça todos os benefícios!</a>
+            <section id="comunidade">
+                <h2 class="section-heading">Conheça nossa comunidade vibrante</h2>
+                <div class="beneficio">
+
+                    <p class="section-content">
+                        A MuholoveDevConnect é muito mais do que apenas uma plataforma de aprendizado. É uma comunidade
+                        formada por programadores apaixonados, dispostos a ajudar uns aos outros e compartilhar suas
+                        experiências.
+                    </p>
+                    <p class="section-content">
+                        Na MuholoveDevConnect, você terá a oportunidade de:
+                    </p>
+                    <ul class="section-content">
+                        <li>Conectar-se com programadores de diferentes níveis e especialidades.</li>
+                        <li>Participar de discussões técnicas em fóruns e salas de bate-papo.</li>
+                        <li>Aprender com mentores experientes que compartilham seus conhecimentos.</li>
+                        <li>Fortalecer o seu networking e encontrar oportunidades de carreira.</li>
+                    </ul>
+                 
+                </div>
+            </section>
+
+            <section id="desenvolva">
+                <h2 class="section-heading">Desenvolva suas habilidades e alcance o próximo nível</h2>
+                <div class="beneficio">
+
+                    <p class="section-content">
+                        A MuholoveDevConnect oferece diversas ferramentas e desafios para ajudá-lo a desenvolver suas
+                        habilidades de programação de forma prática e divertida. Alguns exemplos incluem:
+                    </p>
+                    <ul class="section-content">
+                        <li>Desafios semanais com temas variados para testar e aprimorar seus conhecimentos.</li>
+                        <li>Hackathons online para trabalhar em projetos em um curto período de tempo e aprender novas
+                            tecnologias.</li>
+                        <li>Avaliações de código por especialistas para receber feedback e melhorar suas práticas.</li>
+                        <li>Oportunidades de contribuir para projetos open source e colaborar com a comunidade global de
+                            desenvolvimento.</li>
+                    </ul>
+                    <p class="section-content">
+                        Ao participar ativamente da MuholoveDevConnect, você terá a chance de se destacar no mercado de
+                        trabalho e conquistar novas oportunidades profissionais.
+                    </p>
+              
+                </div>
+            </section>
+
+            <section id="depoimentos">
+                <h2 class="section-heading">Veja o que nossos membros estão dizendo</h2>
+                <div class="beneficio">
+
+                    <div class="testimonials">
+                        <div class="testimonial">
+                            <p>"A MuholoveDevConnect me ajudou a aprender novas linguagens de programação e encontrar um
+                                emprego como desenvolvedor. A comunidade é incrível e sempre disposta a ajudar."</p>
+                            <p class="author">- João Silva, Desenvolvedor Front-End</p>
+                        </div>
+                        <div class="testimonial">
+                            <p>"Participar de projetos colaborativos na MuholoveDevConnect foi uma experiência valiosa.
+                                Pude aprimorar minhas habilidades de trabalho em equipe e aprender com outros
+                                programadores."</p>
+                            <p class="author">@ Maria Souza, Desenvolvedora Back-End</p>
+                        </div>
+                        <div class="conf">
+                            <div class="cube">
+                                <div class="cima" style="text-align: center;">
+                
+                
+                
+                
+                                </div>
+                                <div>
+                                    <span style="--i:0">
+                
+                                    </span>
+                                    <span style="--i:1">
+                
+                
+                                    </span>
+                                    <span style="--i:2">
+                
+                                     
+                                    </span>
+                                    <span style="--i:3">
+                
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                  
+                </div>
+            </section>
+
+            <section id="contato">
+                <h2 class="section-heading">Entre em contato conosco</h2>
+                <div class="beneficio">
+
+                    <p class="section-content">
+                        Tem alguma dúvida, sugestão ou quer saber mais sobre a MuholoveDevConnect? Entre em contato
+                        conosco através dos canais abaixo:
+                    </p>
+                    <ul class="section-content">
+                        <li>E-mail: contato@muholovedevconnect.com</li>
+                        <li>Redes Sociais: (Ícones de redes sociais - insira o código HTML para os ícones desejados)
+                        </li>
+                    </ul>
+                    <p class="section-content">
+                        Nossa equipe terá prazer em te atender!
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="conf">
+            <div class="cube">
+                <div class="cima" style="text-align: center;">
+
+
+
+
+                </div>
+                <div>
+                    <span style="--i:0">
+
+                    </span>
+                    <span style="--i:1">
+
+
+                    </span>
+                    <span style="--i:2">
+
+                     
+                    </span>
+                    <span style="--i:3">
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 MuholoveDevConnect. Todos os direitos reservados.</p>
+    </div>
+
+    <script>
+        const toggleSidebar = document.querySelector('.toggle-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('collapsed');
+        });
+    </script>
+</body>
+
+</html>

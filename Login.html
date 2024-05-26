@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MuholoveDevConnect</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('imagens/Captura\ de\ Ecrã\ \(57\).png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-container {
+            background: rgba(49, 49, 49, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(3, 238, 3, 0.952);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container label {
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container input[type="submit"] {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #1d1e7271;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #09f563;
+        }
+
+        .login-container p {
+            margin-top: 20px;
+        }
+
+        .login-container a {
+            color: #10ec08;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>MuholoveDevConnect</h1>
+        <form id="login-form" onsubmit="loginUser(event)">
+            <label for="username">Nome de usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Entrar">
+        </form>
+        <p>Não tem uma conta? <a href="registro.html">Registre-se</a></p>
+    </div>
+   
+    <script>
+        // Função para login de usuário
+        function loginUser(event) {
+            event.preventDefault();
+
+            // Obter valores dos campos de entrada
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Verificar se o usuário é o administrador padrão
+            if (username === "Loucuras" && password === "admin01") {
+                alert("Login bem-sucedido como administrador!");
+                // Armazenar os dados do usuário no localStorage
+                localStorage.setItem('user', JSON.stringify({ username: username }));
+                // Redirecionar para a página de projetos ou configurações de conta
+                console.log("Redirecionando para a página de projetos...");
+                window.location.href = "projetos.html";
+            } else {
+                // Verificar se os dados do usuário estão armazenados localmente
+                const userData = JSON.parse(localStorage.getItem("userData"));
+                if (userData && userData.username === username && userData.password === password) {
+                    alert(`Login bem-sucedido como ${userData.username}!`);
+                    // Armazenar os dados do usuário no localStorage
+                    localStorage.setItem('user', JSON.stringify({ username: username }));
+                    // Redirecionar para a página de projetos ou configurações de conta
+                    console.log("Redirecionando para a página de projetos...");
+                    window.location.href = "projetos.html";
+                } else {
+                    alert("Nome de usuário ou senha incorretos.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
